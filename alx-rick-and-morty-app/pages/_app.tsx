@@ -1,14 +1,15 @@
-import ErrorBoundary from '@/components/ErrorBoundary';
+import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import ErrorBoundary from '@/components/ErrorBoundary';
+import { ApolloProvider } from "@apollo/client/react";
+import client from "@/graphql/apolloClient";
 
-
-
-function MyApp({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ErrorBoundary>
+     <ErrorBoundary>
+    <ApolloProvider client={client}>
       <Component {...pageProps} />
+    </ApolloProvider>
     </ErrorBoundary>
-  );
+  )
 }
-
-export default MyApp;
